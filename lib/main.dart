@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:sizer/sizer.dart';
 import 'package:xtrafut/componentes/appbar.dart';
 import 'package:xtrafut/componentes/menu.dart';
 import 'package:xtrafut/paginas/home.dart';
+import 'package:xtrafut/paginas/profile.dart';
 import 'package:xtrafut/paginas/torneo_info.dart';
 
 void main() {
@@ -47,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: const Color.fromARGB(255, 57, 70, 72),
-        appBar: PersonalAppBar(),
+        appBar: PersonalAppBar(index: _index),
         body: body(),
         bottomNavigationBar: Menu(
           onTap: _handleTap,
@@ -71,6 +73,13 @@ class _MyHomePageState extends State<MyHomePage> {
             enabled: _index == 1,
             child:
                 TorneoInfo(onTap: () => _handleTap(0), selectedIndex: _index),
+          ),
+        ),
+        Offstage(
+          offstage: _index != 4,
+          child: TickerMode(
+            enabled: _index == 4,
+            child: const Profile(),
           ),
         )
       ],

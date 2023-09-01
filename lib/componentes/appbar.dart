@@ -3,7 +3,8 @@ import 'package:gap/gap.dart';
 import 'package:sizer/sizer.dart';
 
 class PersonalAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const PersonalAppBar({Key? key}) : super(key: key);
+  const PersonalAppBar({Key? key, required this.index}) : super(key: key);
+  final int index;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
@@ -37,74 +38,85 @@ class PersonalAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      actions: [
-        SizedBox(
-          width: 15.w,
-          child: Stack(
-            children: [
-              Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Image.asset('assets/soccer-goal.png')),
-              Positioned(
-                top: 0.4.h,
-                right: 0,
-                child: Container(
-                    width: 5.w,
-                    height: 5.w,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 255, 0, 0),
-                      borderRadius: BorderRadius.circular(100.w),
+      actions: index != 4
+          ? [
+              SizedBox(
+                width: 15.w,
+                child: Stack(
+                  children: [
+                    Positioned(
+                        top: 0,
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Image.asset('assets/soccer-goal.png')),
+                    Positioned(
+                      top: 0.4.h,
+                      right: 0,
+                      child: Container(
+                          width: 5.w,
+                          height: 5.w,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 255, 0, 0),
+                            borderRadius: BorderRadius.circular(100.w),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '1',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 1.5.h,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )),
                     ),
-                    child: Center(
-                      child: Text(
-                        '1',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 1.5.h,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )),
+                  ],
+                ),
+              ),
+              SizedBox(
+                  width: 15.w,
+                  child: Stack(children: [
+                    Positioned(
+                      top: 0,
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      child: Image.asset('assets/paper-plane.png'),
+                    ),
+                    Positioned(
+                      top: 0.4.h,
+                      right: 0,
+                      child: Container(
+                          width: 5.w,
+                          height: 5.w,
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 255, 0, 0),
+                            borderRadius: BorderRadius.circular(100.w),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '12',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 1.5.h,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )),
+                    ),
+                  ]))
+            ]
+          : [
+              SizedBox(
+                width: 15.w,
+                child: Icon(
+                  Icons.settings,
+                  size: 8.w,
+                  color: Colors.white,
+                ),
               ),
             ],
-          ),
-        ),
-        SizedBox(
-            width: 15.w,
-            child: Stack(children: [
-              Positioned(
-                top: 0,
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Image.asset('assets/paper-plane.png'),
-              ),
-              Positioned(
-                top: 0.4.h,
-                right: 0,
-                child: Container(
-                    width: 5.w,
-                    height: 5.w,
-                    decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 255, 0, 0),
-                      borderRadius: BorderRadius.circular(100.w),
-                    ),
-                    child: Center(
-                      child: Text(
-                        '12',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 1.5.h,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )),
-              ),
-            ]))
-      ],
     );
   }
 }
